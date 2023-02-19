@@ -15,7 +15,7 @@ public class AutomationPracticeFormTests {
     }
 
     @Test
-    void fillFormTest() throws InterruptedException {
+    void fillFormTest() {
         open("/automation-practice-form");
         $(byText("Submit")).click();
         $("#firstName").setValue("Aleksey");
@@ -36,7 +36,6 @@ public class AutomationPracticeFormTests {
         $(byText("Select City")).click();
         $(byText("Noida")).click();
         $(byText("Submit")).click();
-
 
         $(".modal-body").shouldHave(text("Aleksey Dunaev"), text("aleks@dunaev.com"), text("Male"), text("7999123456"), text("11 March,1991"), text("English"), text("Music"), text("photo_2022-10-17_03-14-32.jpg"), text("Samara"), text("NCR Noida"));
     }
