@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class AutomationPracticeFormTests {
 
     @BeforeAll
-    static void beroreAll() {
+    static void beforeAll() {
         Configuration.browserSize = "2560x1440";
         Configuration.baseUrl = "https://demoqa.com";
     }
@@ -17,6 +17,10 @@ public class AutomationPracticeFormTests {
     @Test
     void fillFormTest() {
         open("/automation-practice-form");
+
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
+
         $(byText("Submit")).click();
         $("#firstName").setValue("Aleksey");
         $("#lastName").setValue("Dunaev");
@@ -24,10 +28,10 @@ public class AutomationPracticeFormTests {
         $(byText("Male")).click();
         $("#userNumber").setValue("79991234567");
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__year-select").$(byText("1991")).click();
-        $(".react-datepicker__month-select").$(byText("March")).click();
+        $(byText("1991")).click();
+        $(byText("March")).click();
         $(byText("11")).click();
-        $("#subjectsInput").setValue("E").pressEnter();
+        $("#subjectsInput").setValue("English").pressEnter();
         $(byText("Music")).click();
         $("#uploadPicture").uploadFromClasspath("photo_2022-10-17_03-14-32.jpg");
         $("#currentAddress").setValue("Samara");
@@ -37,6 +41,10 @@ public class AutomationPracticeFormTests {
         $(byText("Noida")).click();
         $(byText("Submit")).click();
 
-        $(".modal-body").shouldHave(text("Aleksey Dunaev"), text("aleks@dunaev.com"), text("Male"), text("7999123456"), text("11 March,1991"), text("English"), text("Music"), text("photo_2022-10-17_03-14-32.jpg"), text("Samara"), text("NCR Noida"));
+        $(".modal-body").shouldHave(
+                text("Aleksey Dunaev"), text("aleks@dunaev.com"), text("Male"),
+                text("7999123456"), text("11 March,1991"), text("English"),
+                text("Music"), text("photo_2022-10-17_03-14-32.jpg"),
+                text("Samara"), text("NCR Noida"));
     }
 }
