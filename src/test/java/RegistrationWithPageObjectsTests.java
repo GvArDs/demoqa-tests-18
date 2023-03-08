@@ -10,24 +10,29 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     @Test
     void successfulRegistrationTest() {
         String userName = "Aleksey";
+        String lastName = "Dunaev";
+        String email = "aleks@dunaev.com";
+        String gender = "Male";
+        String phone = "7999123456";
+//        String birthDate = "11 March 1991";
 
         registrationPage.openPage()
                 .setFirstName(userName)
-                .setLastName("Dunaev")
-                .setEmail("aleks@dunaev.com")
-                .setGender("Male")
-                .setPhone("7999123456")
+                .setLastName(lastName)
+                .setEmail(email)
+                .setGender(gender)
+                .setPhone(phone)
                 .setBirthDate("11", "March", "1991");
 
         $("#subjectsInput").setValue("English").pressEnter();
-        $(byText("Music")).click();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#uploadPicture").uploadFromClasspath("photo_2022-10-17_03-14-32.jpg");
         $("#currentAddress").setValue("Samara");
-        $(byText("Select State")).click();
-        $(byText("NCR")).click();
-        $(byText("Select City")).click();
-        $(byText("Noida")).click();
-        $(byText("Submit")).click();
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Delhi")).click();
+        $("#submit").click();
 
         registrationPage.verifyResultModalAppears()
                 .verifyResult("Student Name", userName + " Dunaev")
