@@ -7,6 +7,8 @@ import pages.RegistrationPage;
 public class TestBase {
     protected RegistrationPage registrationPage = new RegistrationPage();
 
+
+
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";

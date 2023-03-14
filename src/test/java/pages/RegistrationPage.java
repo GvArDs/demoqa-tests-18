@@ -53,9 +53,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setBirthDate(String day, String mount, String year) {
+    public RegistrationPage setBirthDate(String dayBirth, String mountBirth, String yearBirth) {
         dateOfBirthInput.click();
-        calendarComponent.setDate(day, mount, year);
+        calendarComponent.setDate(dayBirth, mountBirth, yearBirth);
         return this;
     }
 
