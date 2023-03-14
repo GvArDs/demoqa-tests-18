@@ -14,13 +14,18 @@ public class RegistrationPage {
     private final String TITLE_TEXT = "Student Registration Form";
     private SelenideElement firstNameInput = $("#firstName"), lastNameInput = $("#lastName"), dateOfBirthInput = $("#dateOfBirthInput");
 
+    public void closeBanner (){
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+    }
+
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        closeBanner();
         return this;
     }
+
 
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
@@ -29,11 +34,6 @@ public class RegistrationPage {
 
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
-        return this;
-    }
-
-    public RegistrationPage clearLastName() {
-        lastNameInput.clear();
         return this;
     }
 
@@ -82,13 +82,13 @@ public class RegistrationPage {
 
     public RegistrationPage setStateAndCity(String state, String city) {
         $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#stateCity-wrapper").$(byText(state)).click();
         $("#city").click();
-        $("#stateCity-wrapper").$(byText("Delhi")).click();
+        $("#stateCity-wrapper").$(byText(city)).click();
         return this;
     }
 
-    public RegistrationPage subbmitClick() {
+    public RegistrationPage submitClick() {
         $("#submit").click();
         return this;
     }
