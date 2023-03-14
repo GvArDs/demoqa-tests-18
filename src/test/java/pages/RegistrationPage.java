@@ -7,17 +7,15 @@ import pages.components.RegistrationResultModal;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static tests.TestBase.closeBanner;
 
 public class RegistrationPage {
     private CalendarComponent calendarComponent = new CalendarComponent();
     private RegistrationResultModal registrationResultModal = new RegistrationResultModal();
     private final String TITLE_TEXT = "Student Registration Form";
-    private SelenideElement firstNameInput = $("#firstName"), lastNameInput = $("#lastName"), dateOfBirthInput = $("#dateOfBirthInput");
+    private SelenideElement firstNameInput = $("#firstName"), lastNameInput = $("#lastName"),
+            dateOfBirthInput = $("#dateOfBirthInput");
 
-    public static void closeBanner() {
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
-    }
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
@@ -81,9 +79,9 @@ public class RegistrationPage {
 
     public RegistrationPage setStateAndCity(String state, String city) {
         $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#stateCity-wrapper").$(byText(state)).click();
         $("#city").click();
-        $("#stateCity-wrapper").$(byText("Delhi")).click();
+        $("#stateCity-wrapper").$(byText(city)).click();
         return this;
     }
 

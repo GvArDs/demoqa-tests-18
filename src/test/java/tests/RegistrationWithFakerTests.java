@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 import java.util.Map;
-import java.util.SimpleTimeZone;
 
-import static utils.RandomUtils.*;
 import static utils.RandomUtils.getRandomItemFromArray;
 
 public class RegistrationWithFakerTests extends TestBase {
@@ -25,7 +23,7 @@ public class RegistrationWithFakerTests extends TestBase {
                 listHobbies = {"Sports", "Reading", "Music"};
 
         var mapStateInCity = Map.of(
-                "NCR", new String[]{"Delphi", "Gurgaon", "Noida"},
+                "NCR", new String[]{"Delhi", "Gurgaon", "Noida"},
                 "Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"},
                 "Haryana", new String[]{"Karnal", "Panipat"},
                 "Rajasthan", new String[]{"Jaipur", "Jaiselmer"}
@@ -43,7 +41,7 @@ public class RegistrationWithFakerTests extends TestBase {
                 hobbies = getRandomItemFromArray(listHobbies),
                 picture = "photo_2022-10-17_03-14-32.jpg",
                 currentAddress = faker.address().fullAddress(),
-                state = getRandomItemFromArray(mapStateInCity.keySet().toArray(new String[1])),
+                state = getRandomItemFromArray(mapStateInCity.keySet().toArray(new String[0])),
                 city = getRandomItemFromArray(mapStateInCity.get(state));
 
         registrationPage.openPage()
@@ -72,5 +70,4 @@ public class RegistrationWithFakerTests extends TestBase {
                 .verifyResult("Address", currentAddress)
                 .verifyResult("State and City", state + " " + city);
     }
-
 }
