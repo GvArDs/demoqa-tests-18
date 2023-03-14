@@ -23,7 +23,6 @@ public class RandomUtils {
     }
 
     public static String getRandomString(int length) {
-//        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
         SecureRandom rnd = new SecureRandom();
@@ -42,11 +41,4 @@ public class RandomUtils {
 
         return values[index];
     }
-
-    public static String getRandomName(String value) {
-        return new Faker(new Locale(value)).name().firstName();
-    }
-//    public static String getRandomUserEmail() {
-//        return new Faker(new Locale("en")).name().userEmail;
-//    }
 }

@@ -14,11 +14,15 @@ public class RegistrationPage {
     private final String TITLE_TEXT = "Student Registration Form";
     private SelenideElement firstNameInput = $("#firstName"), lastNameInput = $("#lastName"), dateOfBirthInput = $("#dateOfBirthInput");
 
+    public static void closeBanner() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+    }
+
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        closeBanner();
         return this;
     }
 
@@ -29,11 +33,6 @@ public class RegistrationPage {
 
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
-        return this;
-    }
-
-    public RegistrationPage clearLastName() {
-        lastNameInput.clear();
         return this;
     }
 
@@ -53,9 +52,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setBirthDate(String dayBirth, String mountBirth, String yearBirth) {
+    public RegistrationPage setBirthDate(String dayBirth, String monthBirth, String yearBirth) {
         dateOfBirthInput.click();
-        calendarComponent.setDate(dayBirth, mountBirth, yearBirth);
+        calendarComponent.setDate(dayBirth, monthBirth, yearBirth);
         return this;
     }
 
@@ -88,7 +87,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage subbmitClick() {
+    public RegistrationPage submitClick() {
         $("#submit").click();
         return this;
     }

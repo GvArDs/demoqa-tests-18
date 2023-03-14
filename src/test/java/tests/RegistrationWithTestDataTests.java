@@ -68,7 +68,7 @@ public class RegistrationWithTestDataTests extends TestBase {
                 .setPicture(picture)
                 .setCurrentAddress(currentAddress)
                 .setStateAndCity(state, city);
-        registrationPage.subbmitClick();
+        registrationPage.submitClick();
 
         registrationPage.verifyResultModalAppears()
                 .verifyResult("Student Name", userName + " " + lastName)
